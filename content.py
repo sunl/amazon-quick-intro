@@ -4,7 +4,7 @@ Every slide lists the official AWS pages its facts come from (SRC keys); build_d
 them as clickable links in the slide footer. Narration ("say") is used for the speaker notes and
 the video; a (key, text) tuple highlights the element with that key while the text is spoken.
 """
-FOOTER = "资料截至 2026-10-31（北京时间），桌面版按 2026-11-03 英文文档复核 · 功能、区域与价格以 AWS 官方文档和定价页为准"
+FOOTER = "资料截至 2026-10-31（北京时间）；桌面版按 2026-11-03、套餐按 2026-11-05 的英文文档复核 · 功能、区域与价格以 AWS 官方文档和定价页为准"
 
 D = "https://docs.aws.amazon.com/quick/latest/userguide/"
 WN = "https://aws.amazon.com/about-aws/whats-new/"
@@ -178,6 +178,8 @@ SRC.update({
     "automate_start": ("Getting started with Quick Automate", D + "getting-started-quick-automate.html"),
     "teams_admin": ("Teams extension user guide", D + "teams-extension-user-guide.html"),
     "wn_desktop_preview": ("What's New 2026-04 桌面版预览", WN + "2026/04/amazon-quick-macos-windows-preview/"),
+    "wn_essentials": ("What's New 2026-10 Quick Essentials", WN + "2026/10/amazon-quick-essentials/"),
+    "user_types": ("User types and subscriptions", D + "user-types.html"),
     "wn_desktop_signin": ("What's New 2026-11 桌面版沿用 Web 登录",
                           WN + "2026/11/amazon-quick-desktop-organization-sign-in/"),
     "desktop_adv_idp": ("Dedicated identity provider (advanced)", D + "desktop-enterprise-advanced-idp.html"),
@@ -287,23 +289,24 @@ SLIDES.append({
 
 SLIDES.append({
     "kind": "table", "section": S1, "title": "开通方式与套餐",
-    "lead": "个人和团队在 aws.com/quick 注册（无需 AWS 账户）；企业通过 AWS 管理控制台开通，接入 IAM Identity Center 等企业身份。",
-    "head": ["套餐", "开通方式", "价格（每用户每月）", "主要特点"],
-    "widths": [1.35, 1.75, 3.25, 5.75], "pt": 13,
+    "head": ["套餐", "开通方式", "每用户每月", "主要特点"],
+    "widths": [1.35, 1.5, 2.1, 7.2], "pt": 12.5, "hpt": 13.5,
     "rows": [
-        ["Free", "aws.com/quick", "$0", "1 个用户、1 GB 索引存储；chat、custom chat agents、Research、Flows、Apps、桌面应用"],
-        ["Plus", "aws.com/quick", "年付 $20 / 月付 $25", "最多 300 个用户、每席位 10 GB；团队共享 Spaces 与 knowledge bases，浏览器与 Microsoft 365 扩展"],
+        ["Free", "aws.com/quick", "$0", "1 个用户、1 GB；chat、custom chat agents、Research、Flows、Apps、桌面应用"],
+        ["Plus", "aws.com/quick", "年付 $20 / 月付 $25", "最多 300 个用户、每席位 10 GB；团队共享 Spaces 与 knowledge bases；浏览器与 Microsoft 365 扩展"],
         ["Max", "aws.com/quick", "年付 $100 / 月付 $125", "用量与索引存储均为 Plus 的 5 倍，面向重度用户"],
-        ["Professional", "AWS 控制台", "$20，另加每账户 $250 基础设施费", "每用户 25 GB 池化索引、每月 8 agent hours；SSO、RBAC，查看 Quick Sight dashboards"],
-        ["Enterprise", "AWS 控制台", "$40，另加每账户 $250 基础设施费", "每用户 50 GB、每月 18 agent hours；Quick Automate，创建 dashboards 与 datasets；超额 $3 / agent hour"],
+        ["Essentials", "AWS 控制台", "$3", "2026-10-30 新增的入门套餐：chat、Research、Flows、Apps、桌面应用，查看 Quick Sight dashboards；每用户 1 GB、每月 1 agent hour*"],
+        ["Professional", "AWS 控制台", "$20", "Essentials 的全部能力；每用户 25 GB 池化索引、每月 8 agent hours"],
+        ["Enterprise", "AWS 控制台", "$40", "每用户 50 GB、每月 18 agent hours；Quick Automate，创建 dashboards 与 datasets，审批与认证已发布资产"],
     ],
-    "note": {"label": "注意", "text": "Quick Sight dashboards 与分析、Quick Automate 和 API 仅在控制台开通的账户中提供。控制台首次开通有 30 天、最多 25 个用户的免费试用。"},
-    "src": ["pricing", "plans", "signup", "wn_max", "wn_alwayson"],
+    "note": {"label": "注意", "text": "Essentials、Professional、Enterprise 每账户另收 $250/月基础设施费；超额 $3 / agent hour，Essentials 与 Professional 须先由管理员设 limit profile。* 2027-01-31 前为 3 小时。Quick Sight 分析、Quick Automate 与 API 仅限控制台开通的账户；首次开通可免费试用 30 天、最多 25 个用户。", "h": 0.85},
+    "src": ["pricing", "plans", "signup", "wn_essentials", "user_types", "wn_max", "wn_alwayson"],
     "say": [
         "开通方式有两种：个人和小团队在 aws.com/quick 注册，不需要 AWS 账户；企业通过 AWS 管理控制台开通，接入 IAM Identity Center 等企业身份。",
         ("r1,r2,r3", "注册方式有 Free、Plus、Max 三档：Free 免费、一个用户；Plus 按年付每用户每月 20 美元，可以团队共享；Max 每用户每月 100 美元，用量是 Plus 的 5 倍。"),
-        ("r4,r5", "控制台开通有 Professional 和 Enterprise 两种订阅，每用户每月 20 和 40 美元，另收每账户每月 250 美元的基础设施费。用量按 agent hours 计、按秒计量，每月分别含 8 小时和 18 小时；这两档里只有 Enterprise 可以超额，每 agent hour 3 美元。"),
-        ("note", "要注意，Quick Sight 的仪表板与分析、Quick Automate 和 API，只在控制台开通的账户里提供。"),
+        ("r4", "控制台开通有三种订阅。10 月 30 日新增的 Essentials 是面向全员的入门套餐，每用户每月 3 美元，包含 chat、Research、Flows、Apps 和桌面应用，还能查看 Quick Sight 仪表板；每月含 1 个 agent hour，2027 年 1 月底之前为 3 个。原来按用户计费的 Quick Sight Reader 会升级为 Essentials，不增加每用户费用，各区域分阶段推出。"),
+        ("r5,r6", "Professional 和 Enterprise 每用户每月 20 和 40 美元，每月分别含 8 个和 18 个 agent hours；只有 Enterprise 可以用 Quick Automate 和创建仪表板。这三种订阅，每个账户另收每月 250 美元的基础设施费。"),
+        ("note", "用量按 agent hours 按秒计量，超出配额按每 agent hour 3 美元计费；Essentials 和 Professional 需要管理员先设置 limit profile，只能在限额内超额。另外，Quick Sight 的仪表板与分析、Quick Automate 和 API，只在控制台开通的账户里提供。"),
     ],
 })
 
