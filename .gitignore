@@ -1,0 +1,7 @@
+# intermediate build outputs and local environment
+.venv/
+__pycache__/
+build/
+
+# the video is published as a GitHub Release asset, not committed
+docs/*.mp4
